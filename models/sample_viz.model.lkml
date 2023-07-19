@@ -15293,3 +15293,7 @@ explore: events {
     relationship: one_to_many
   }
 }
+
+explore: test {}
+
+explore: testing {}
