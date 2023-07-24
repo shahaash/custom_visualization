@@ -1,6 +1,6 @@
 view: test {
   derived_table: {
-    sql: select "unassigned" as owner_id, "0" as status_new, "0" as status_open, "0" as status_closed, "Low" as risk_modifiers,;;
+    sql: select "unassigned" as owner_id, "10" as status_new, "0" as status_open, "0" as status_closed, "Low" as risk_modifiers,;;
   }
 
   dimension: Owner {
