@@ -1,8 +1,8 @@
 view: testing {
   derived_table: {
-    sql: select "Firewall rule activity" as view, "admin" as user, "Yes" as viewed_today, "New" as status, "10" as total_count, "2" as notable_events, date("2023-07-10") as date, "80" as risk_score union all
-    select "Network Traffic activity" as view, "admin" as user, "Yes" as viewed_today, "Open" as status, "0" as total_count, "1" as notable_events, date("2023-07-03") date, "160" as risk_score union all
-    select "Prohibited Services" as view,  "" as user, "No" as viewed_today, "Close" as status, "0" as total_count, "0" as notable_events, date("2023-06-26") as date, "0" as risk_score;;
+    sql: select "Firewall rule activity" as view, "admin" as user, "Yes" as viewed_today, "New" as status, 10 as total_count, 2 as notable_events, date("2023-07-10") as date, 80 as risk_score union all
+    select "Network Traffic activity" as view, "admin" as user, "Yes" as viewed_today, "Open" as status, 0 as total_count, 1 as notable_events, date("2023-07-03") date, 160 as risk_score union all
+    select "Prohibited Services" as view,  "" as user, "No" as viewed_today, "Close" as status, 0 as total_count, 0 as notable_events, date("2023-06-26") as date, 0 as risk_score;;
   }
 
   dimension: view {
@@ -26,7 +26,7 @@ view: testing {
   }
 
   dimension: Notable_Events {
-    type: string
+    type: number
     sql: ${TABLE}.notable_events ;;
   }
 
