@@ -9,7 +9,7 @@ looker.plugins.visualizations.add({
     },
 
     create: function (element, config) {
-        // Create the visualization container
+        // Create a visualization container 
         this.container = element.appendChild(document.createElement("div"));
         this.container.style.display = "flex";
         this.container.style.flexDirection = "column"; // Display elements below each other
