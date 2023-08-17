@@ -5,7 +5,9 @@ looker.plugins.visualizations.add({
     create: function(element, config) {
       // Create a container for the count value
       this.container = element.appendChild(document.createElement("div"));
-      this.container.setAttribute("id", "count-container");
+      this.container.setAttribute("id", "count-line-container");
+
+      // Applying Styling to the container
       this.container.style.fontSize = "40px";
       this.container.style.fontWeight = "bold";
       this.container.style.textAlign = "center";
