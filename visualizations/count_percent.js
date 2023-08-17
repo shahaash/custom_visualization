@@ -4,16 +4,20 @@ looker.plugins.visualizations.add({
     label: 'Count and Percentage Visualization',
     // adding options for dynamic values
     options: {
-      selectedCountField: {
-        type: 'string',
-        label: 'Select Count Field',
-        default: 'record_count'
-      },
-      selectedPercentageField: {
-        type: 'string',
-        label: 'Select Percentage Field',
-        default: 'percentage_value'
-      }
+        selectedCountField: {
+          type: 'number',
+          label: 'Select Count Field',
+          display: 'select',
+          values: "{{ fields }}", // Looker will populate the available fields here
+          default: 'record_count'
+        },
+        selectedPercentageField: {
+          type: 'numbers',
+          label: 'Select Percentage Field',
+          display: 'select',
+          values: "{{ fields }}", // Looker will populate the available fields here
+          default: 'percentage_value'
+        }
     },
     create: function(element, config) {
       this.container = element.appendChild(document.createElement("div"));
