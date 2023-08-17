@@ -38,11 +38,10 @@ looker.plugins.visualizations.add({
       // Display the count and percentage value in the container
       this.container.innerHTML = `
         <div style="font-size: 50px;">${count}</div>
-        <div style="display: flex; flex-direction: column; align-items: flex-start;">
-          <div style="font-size: 15px;"></div>
-          <div style="font-size: 20px;">${percentage}%</div>
+        <div style="display: flex; flex-direction: column;">
+          <div style="font-size: 25px;">${arrowIcon}</div>
+          <div style="font-size: 25px; margin-left: 5px;">${currentPercentage}%</div>
         </div>
-        <div style="font-size: 25px; margin-left: 10px;">${arrowIcon}</div>
       `;
 
       // Display the text line below the count value
