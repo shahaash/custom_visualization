@@ -1,40 +1,35 @@
 // Use Looker's Visualization API
 looker.plugins.visualizations.add({
-    id: 'value-text-visualization',
-    label: 'Value and Text Visualization',
+    id: 'today-yesterday-visualization',
+    label: 'Today vs Yesterday Visualization',
     options: {
       selectedValue: {
         type: 'number',
-        label: 'Select a Value'
+        label: 'Select a Value',
+        default: 0
       }
     },
     create: function(element, config) {
       this.container = element.appendChild(document.createElement("div"));
       this.container.setAttribute("id", "visualization-container");
-
-      // Apply styling to the container
-      this.container.style.display = "flex";
-      this.container.style.flexDirection = "column";
-      this.container.style.alignItems = "center";
+      this.container.style.textAlign = "center";
+      this.container.style.padding = "20px";
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
-      // Use Looker's options to get the selected numeric value
+      // Retrieve the selected dynamic value from Looker's options
       const selectedValue = config.selectedValue;
-      const dataValue = data.selectedValue.length
-
-      // Display the selected numeric value
+  
+      // Display the dynamic value and the "Today vs Yesterday" text
       const valueParagraph = document.createElement("p");
-      valueParagraph.style.fontSize = "24px";
-      valueParagraph.textContent = `${dataValue}`;
+      valueParagraph.textContent = `Value: ${selectedValue}`;
       this.container.appendChild(valueParagraph);
-
+  
       const textParagraph = document.createElement("p");
-      textParagraph.style.fontSize = "18px";
-      textParagraph.style.color = "#333";
-      textParagraph.textContent = 'Today vs Yesterday';
+      textParagraph.textContent = "Today vs Yesterday";
       this.container.appendChild(textParagraph);
-
+  
       // Signal the completion of rendering
       done();
     }
   });
+  
