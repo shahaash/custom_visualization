@@ -12,6 +12,13 @@ looker.plugins.visualizations.add({
       this.container.style.fontWeight = "bold";
       this.container.style.textAlign = "center";
       this.container.style.padding = "25px";
+
+      // Create a container for the text line
+      this.textContainer = element.appendChild(document.createElement("div"));
+      this.textContainer.setAttribute("id", "text-line-container");
+      this.textContainer.style.fontSize = "18px";
+      this.textContainer.style.textAlign = "center";
+      this.textContainer.style.padding = "10px";
     },
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
@@ -20,6 +27,9 @@ looker.plugins.visualizations.add({
 
       // Display the count value in the container
       this.container.textContent = `${count}`;
+
+      // Display the text line below the count value
+      this.textContainer.textContent = "Today vs Yesterday";
 
       // Signal the completion of rendering
       done();
