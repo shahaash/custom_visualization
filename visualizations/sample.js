@@ -30,6 +30,10 @@ looker.plugins.visualizations.add({
       // Calculate the percentage value based on the available count
       const estimatedTotalItems = 1000;
       const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
+      const previousPercentage = 75;
+
+      const percentageChange = currentPercentage - previousPercentage;
+      const arrowIcon = percentageChange > 0 ? '🔼' : '🔽';
 
       // Display the count and percentage value in the container
       this.container.innerHTML = `
@@ -38,6 +42,7 @@ looker.plugins.visualizations.add({
           <div style="font-size: 20px;">${percentage}%</div>
           <div style="font-size: 15px;">Total Items</div>
         </div>
+        <div style="font-size: 25px; margin-left: 10px;">${arrowIcon}</div>
       `;
 
       // Display the text line below the count value
