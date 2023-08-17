@@ -5,8 +5,7 @@ looker.plugins.visualizations.add({
     options: {
       selectedValue: {
         type: 'number',
-        label: 'Select a Value',
-        default: 0
+        label: 'Select a Value'
       }
     },
     create: function(element, config) {
