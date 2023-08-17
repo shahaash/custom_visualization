@@ -8,8 +8,6 @@ looker.plugins.visualizations.add({
       this.container.setAttribute("id", "count-line-container");
 
       // Applying Styling to the container
-      this.container.style.fontSize = "40px";
-      this.container.style.fontWeight = "bold";
       this.container.style.textAlign = "center";
       this.container.style.padding = "25px";
 
@@ -30,8 +28,11 @@ looker.plugins.visualizations.add({
       const estimatedTotalItems = 1000;
       const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
 
-      // Display the count value in the container
-      this.container.textContent = `${count} (${percentage}%)`;
+      // Display the count and percentage value in the container
+      this.container.innerHTML = `
+        <div style="font-size: 50px; font-weight: bold;">${count}</div>
+        <div style="font-size: 20px;">${percentage}%</div>
+      `;
 
       // Display the text line below the count value
       this.textContainer.textContent = "Today vs Yesterday";
