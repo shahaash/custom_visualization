@@ -5,8 +5,7 @@ looker.plugins.visualizations.add({
     options: {
       selectedValue: {
         type: 'number',
-        label: 'Select a Value',
-        default: 0
+        label: 'Select a Value'
       }
     },
     create: function(element, config) {
@@ -26,7 +25,7 @@ looker.plugins.visualizations.add({
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
       // Retrieve the selected dynamic value from Looker's options
-      const selectedValue = config.selectedValue;
+      const selectedValue = data.selectedValue;
   
       // Display the dynamic value and the "Today vs Yesterday" text
       const valueParagraph = document.createElement("p");
