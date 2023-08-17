@@ -13,7 +13,7 @@ looker.plugins.visualizations.add({
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
       // Calculate the count value from the data
-      const count = data;
+      const count = data.value;
 
       // Display the count value in the container
       this.container.textContent = `${count}`;
