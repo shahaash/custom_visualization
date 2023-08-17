@@ -6,9 +6,10 @@ looker.plugins.visualizations.add({
       // Create a container for the count value
       this.container = element.appendChild(document.createElement("div"));
       this.container.setAttribute("id", "count-container");
-      this.container.style.fontSize = "24px";
+      this.container.style.fontSize = "40px";
       this.container.style.fontWeight = "bold";
       this.container.style.textAlign = "center";
+      this.container.style.padding = "25px";
     },
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
