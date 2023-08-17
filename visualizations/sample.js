@@ -26,8 +26,12 @@ looker.plugins.visualizations.add({
       // Calculate the count value from the data
       const count = data.length;
 
+      // Calculate the percentage value based on the available count
+      const estimatedTotalItems = 1000;
+      const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
+
       // Display the count value in the container
-      this.container.textContent = `${count}`;
+      this.container.textContent = `${count} (${percentage}%)`;
 
       // Display the text line below the count value
       this.textContainer.textContent = "Today vs Yesterday";
