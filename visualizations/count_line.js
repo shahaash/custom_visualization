@@ -18,9 +18,6 @@ looker.plugins.visualizations.add({
   
       // Create a container for the line chart
       this.chartContainer = this.container.appendChild(document.createElement("div"));
-      this.chartContainer.style.width = "100%";
-      this.chartContainer.style.height = "300px";
-      this.chartContainer.style.marginTop = "20px";
     },
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
