@@ -36,7 +36,6 @@ looker.plugins.visualizations.add({
         <div style="font-size: 50px;">${count}</div>
         <div style="display: flex; flex-direction: column; align-items: flex-start;">
           <div style="font-size: 20px;">${percentage}%</div>
-          <div style="font-size: 15px;">Total Items</div>
         </div>
       `;
 
