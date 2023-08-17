@@ -20,19 +20,18 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, done) {
       // Use Looker's options to get the selected numeric value
       const selectedValue = config.selectedValue;
+      const dataValue = data.selectedValue.length
 
       // Display the selected numeric value
       const valueParagraph = document.createElement("p");
       valueParagraph.style.fontSize = "24px";
-      valueParagraph.textContent = `${selectedValue}`;
+      valueParagraph.textContent = `${dataValue}`;
       this.container.appendChild(valueParagraph);
-
-      text = 'Today vs Yesterday'
 
       const textParagraph = document.createElement("p");
       textParagraph.style.fontSize = "18px";
       textParagraph.style.color = "#333";
-      textParagraph.textContent = `${text}`;
+      textParagraph.textContent = 'Today vs Yesterday';
       this.container.appendChild(textParagraph);
 
       // Signal the completion of rendering
