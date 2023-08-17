@@ -12,7 +12,9 @@ looker.plugins.visualizations.add({
       this.container.style.textAlign = "center";
       this.container.style.padding = "25px";
       this.container.style.display = "flex";
+      this.container.style.flexDirection = "column";
       this.container.style.alignItems = "center";
+      this.container.style.justifyContent = "center";
 
       // Create a container for the text line
       this.textContainer = element.appendChild(document.createElement("div"));
