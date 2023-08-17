@@ -32,7 +32,7 @@ looker.plugins.visualizations.add({
       const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
       const previousPercentage = 75;
 
-      const percentageChange = currentPercentage - previousPercentage;
+      const percentageChange = percentage - previousPercentage;
       const arrowIcon = percentageChange > 0 ? '🔼' : '🔽';
 
       // Display the count and percentage value in the container
