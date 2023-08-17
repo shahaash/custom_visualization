@@ -16,7 +16,7 @@ looker.plugins.visualizations.add({
       const count = data.length;
 
       // Display the count value in the container
-      this.container.textContent = ${count};
+      this.container.textContent = `${count}`;
 
       // Signal the completion of rendering
       done();
