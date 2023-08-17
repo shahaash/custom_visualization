@@ -1,18 +1,12 @@
+// Use Looker's Visualization API
 looker.plugins.visualizations.add({
     id: 'value-text-visualization',
     label: 'Value and Text Visualization',
     options: {
       selectedValue: {
         type: 'number',
-        label: 'Select Value Field',
-        display: 'select',
-        values: "{{ measures }}", // Looker will populate the available measures here
-        default: 'selected_measure'
-      },
-      customText: {
-        type: 'string',
-        label: 'Custom Text',
-        default: 'Today vs Yesterday'
+        label: 'Select a Value',
+        default: 0
       }
     },
     create: function(element, config) {
@@ -20,28 +14,27 @@ looker.plugins.visualizations.add({
       this.container.setAttribute("id", "visualization-container");
 
       // Apply styling to the container
-      this.container.style.textAlign = "center";
+      this.container.style.display = "flex";
+      this.container.style.flexDirection = "column";
+      this.container.style.alignItems = "center";
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
-      // Use Looker's options to get dynamic field selections
-      const selectedValueField = config.selectedValue;
-      const customText = config.customText;
+      // Use Looker's options to get the selected numeric value
+      const selectedValue = config.selectedValue;
 
-      // Retrieve the selected value from the query response
-      const selectedValue = data[0][queryResponse.fields[selectedValueField].name].value;
-
-      // Display the selected value and custom text
-      const valueTextDiv = document.createElement("div");
-
+      // Display the selected numeric value
       const valueParagraph = document.createElement("p");
-      valueParagraph.textContent = `Value: ${selectedValue}`;
-      valueTextDiv.appendChild(valueParagraph);
+      valueParagraph.style.fontSize = "24px";
+      valueParagraph.textContent = `${selectedValue}`;
+      this.container.appendChild(valueParagraph);
 
-      const customTextParagraph = document.createElement("p");
-      customTextParagraph.textContent = `Custom Text: ${customText}`;
-      valueTextDiv.appendChild(customTextParagraph);
+      text = 'Today vs Yesterday'
 
-      this.container.appendChild(valueTextDiv);
+      const textParagraph = document.createElement("p");
+      textParagraph.style.fontSize = "18px";
+      textParagraph.style.color = "#333";
+      textParagraph.textContent = `${text}`;
+      this.container.appendChild(textParagraph);
 
       // Signal the completion of rendering
       done();
