@@ -11,7 +11,7 @@ looker.plugins.visualizations.add({
       this.container.style.fontWeight = "bold";
       this.container.style.textAlign = "center";
       this.container.style.padding = "25px";
-      this.container.style.display = "flex"; // Use flex layout
+      this.container.style.display = "flex";
       this.container.style.alignItems = "center";
 
       // Create a container for the text line
@@ -35,7 +35,8 @@ looker.plugins.visualizations.add({
       this.container.innerHTML = `
         <div style="font-size: 50px;">${count}</div>
         <div style="display: flex; flex-direction: column; align-items: flex-start;">
-          <div style="font-size: 25px; margin-left: 5px;">(${percentage}%)</div>
+          <div style="font-size: 20px;">${percentage}%</div>
+          <div style="font-size: 15px;">Total Items</div>
         </div>
       `;
 
