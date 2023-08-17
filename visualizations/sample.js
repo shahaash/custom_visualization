@@ -16,9 +16,10 @@ looker.plugins.visualizations.add({
       // Create a container for the text line
       this.textContainer = element.appendChild(document.createElement("div"));
       this.textContainer.setAttribute("id", "text-line-container");
-      this.textContainer.style.fontSize = "18px";
+      this.textContainer.style.fontSize = "14px";
       this.textContainer.style.textAlign = "center";
       this.textContainer.style.padding = "10px";
+      this.textContainer.style.fontFamily = "Arial";
     },
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
