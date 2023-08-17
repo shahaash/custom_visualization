@@ -11,6 +11,7 @@ looker.plugins.visualizations.add({
       this.container.style.fontWeight = "bold";
       this.container.style.textAlign = "center";
       this.container.style.padding = "25px";
+      this.container.style.display = "flex";
 
       // Create a container for the text line
       this.textContainer = element.appendChild(document.createElement("div"));
@@ -32,7 +33,7 @@ looker.plugins.visualizations.add({
       // Display the count and percentage value in the container
       this.container.innerHTML = `
         <div style="font-size: 50px;">${count}</div>
-        <div style="font-size: 20px;">${percentage}%</div>
+        <div style="font-size: 25px; align-self: flex-end; margin-left: 5px;">(${percentage}%)</div>
       `;
 
       // Display the text line below the count value
