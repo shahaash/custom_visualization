@@ -14,7 +14,6 @@ looker.plugins.visualizations.add({
       this.container.style.display = "flex";
       this.container.style.flexDirection = "column";
       this.container.style.alignItems = "center";
-      this.container.style.justifyContent = "center";
 
       // Create a container for the text line
       this.textContainer = element.appendChild(document.createElement("div"));
@@ -39,10 +38,12 @@ looker.plugins.visualizations.add({
 
       // Display the count and percentage value in the container
       this.container.innerHTML = `
-        <div style="font-size: 50px;">${count}</div>
-        <div style="display: flex; flex-direction: column; align-items: flex-start;">
-          <div style="font-size: 15px;">${arrowIcon}</div>
-          <div style="font-size: 20px;">${percentage}%</div>
+        <div style="display: flex; align-items: center;">
+          <div style="font-size: 50px;">${count}</div>
+          <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <div style="font-size: 15px;">${arrowIcon}</div>
+            <div style="font-size: 20px; text-align: right;">${percentage}%</div>
+          </div>
         </div>
       `;
 
