@@ -8,6 +8,7 @@ looker.plugins.visualizations.add({
       this.container.setAttribute("id", "count-line-container");
 
       // Applying Styling to the container
+      this.container.style.fontWeight = "bold";
       this.container.style.textAlign = "center";
       this.container.style.padding = "25px";
 
@@ -30,7 +31,7 @@ looker.plugins.visualizations.add({
 
       // Display the count and percentage value in the container
       this.container.innerHTML = `
-        <div style="font-size: 50px; font-weight: bold;">${count}</div>
+        <div style="font-size: 50px;">${count}</div>
         <div style="font-size: 20px;">${percentage}%</div>
       `;
 
