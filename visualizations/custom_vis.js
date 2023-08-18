@@ -27,20 +27,14 @@ looker.plugins.visualizations.add({
     updateAsync: function(data, element, config, queryResponse, details, done) {
       // Calculate the count value from the data
       const count = data.length;
-      // const count = config.query_fields.dimensions[0].value || 0;
 
       // Calculate the percentage value based on the available count
-      // const estimatedTotalItems = 100;
-      // const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
-      // const previousPercentage = 75;
-      const previousCount = 75; // Replace with the previous day's count value
-      const percentageChange = ((count - previousCount) / previousCount) * 100;
+      const estimatedTotalItems = 100;
+      const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
+      const previousPercentage = 75;
 
-      // changing the arros size
-      const arrowIconSize = '40px';
-      //const percentageChange = percentage - previousPercentage;
-      //const arrowIcon = percentageChange > 0 ? '➚' : '➘';
-      const arrowIcon = percentageChange > 0 ? `<span style="font-size: ${arrowIconSize};">➚</span>` : `<span style="font-size: ${arrowIconSize};">➘</span>`;
+      const percentageChange = percentage - previousPercentage;
+      const arrowIcon = percentageChange > 0 ? '🔼' : '🔽';
 
       // Display the count and percentage value in the container
       this.container.innerHTML = `
