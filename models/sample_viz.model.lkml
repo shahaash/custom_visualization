@@ -6857,6 +6857,12 @@ explore: events {
     sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels ;;
     relationship: one_to_many
   }
+  join: events__about__labels__severity {
+    view_label: "Events: About Labels Severity"
+    sql: LEFT JOIN UNNEST(${events__about.labels}) as events__about__labels__severity ON ${events__about__labels__severity.key} = "alertType_name" ;;
+    fields: [events__about__labels__severity.value,events__about__labels__severity.filter_value]
+    relationship: one_to_many
+  }
   join: events__intermediary__mac {
     view_label: "Events: Intermediary Mac"
     sql: LEFT JOIN UNNEST(${events__intermediary.mac}) as events__intermediary__mac ;;

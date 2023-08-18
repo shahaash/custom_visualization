@@ -29,7 +29,7 @@ looker.plugins.visualizations.add({
       const count = data.length;
 
       // Calculate the percentage value based on the available count
-      const estimatedTotalItems = 1000;
+      const estimatedTotalItems = 100;
       const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
       const previousPercentage = 75;
 

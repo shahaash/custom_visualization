@@ -47736,6 +47736,30 @@ view: events__about__labels {
   }
 }
 
+view: events__about__labels__severity {
+
+  dimension: key {
+    type: string
+    sql: ${TABLE}.key ;;
+  }
+  dimension: rbac_enabled {
+    type: yesno
+    sql: ${TABLE}.rbac_enabled ;;
+  }
+  dimension: source {
+    type: string
+    sql: ${TABLE}.source ;;
+  }
+  dimension: value {
+    type: string
+    sql: ${TABLE}.value ;;
+  }
+  dimension: filter_value {
+    type: string
+    sql: ${value} ;;
+  }
+}
+
 view: events__intermediary__mac {
 
   dimension: events__intermediary__mac {
