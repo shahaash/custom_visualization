@@ -39,7 +39,7 @@ looker.plugins.visualizations.add({
       // Display the count and percentage value in the container
       this.container.innerHTML = `
         <div style="display: flex; align-items: center;">
-          <div style="font-size: 50px;">${count}</div>
+          <div style="font-size: 60px;">${count}</div>
           <div style="display: flex; flex-direction: column; align-items: flex-start;">
             <div style="font-size: 30px;">${arrowIcon}</div>
             <div style="font-size: 20px; text-align: right;">${percentage}%</div>
