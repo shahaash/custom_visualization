@@ -26,8 +26,8 @@ looker.plugins.visualizations.add({
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
       // Calculate the count value from the data
-      // const count = data.length;
-      const count = config.query_fields.dimensions[0].value || 0;
+      const count = data.length;
+      // const count = config.query_fields.dimensions[0].value || 0;
 
       // Calculate the percentage value based on the available count
       // const estimatedTotalItems = 100;
