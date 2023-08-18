@@ -34,7 +34,7 @@ looker.plugins.visualizations.add({
       const previousPercentage = 75;
 
       const percentageChange = percentage - previousPercentage;
-      const arrowIcon = percentageChange > 0 ? '🔼' : '🔽';
+      const arrowIcon = percentageChange > 0 ? '➚' : '➘';
 
       // Display the count and percentage value in the container
       this.container.innerHTML = `
