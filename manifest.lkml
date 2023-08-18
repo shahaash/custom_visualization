@@ -1,10 +1,5 @@
 visualization: {
-  id: "count"
-  label: "count"
-  file: "visualizations/sample.js"
-}
-visualization: {
-  id: "count_line"
-  label: "count_line"
-  file: "visualizations/count_line.js"
+  id: "custom_vis"
+  label: "custom_vis"
+  file: "custom_vis/sample.js"
 }
