@@ -1,47 +1,42 @@
 looker.plugins.visualizations.add({
-  id: 'count_value_change_with_selected_date_field',
-  label: 'Count Value Change with Selected Date Field',
+  id: 'percentage_change_for_each_date',
+  label: 'Percentage Change for Each Date',
   create: function(element, config) {
-    // Create a container for the count change values
+    // Create a container for displaying the percentage change
     this.container = element.appendChild(document.createElement("div"));
-    this.container.setAttribute("id", "count-change-container");
+    this.container.setAttribute("id", "percentage-change-container");
 
     // Applying Styling to the container
-    this.container.style.fontSize = "16px";
-    this.container.style.textAlign = "left";
+    this.container.style.fontWeight = "bold";
+    this.container.style.textAlign = "center";
     this.container.style.padding = "10px";
     this.container.style.fontFamily = "Arial"; // Set font family to Arial
   },
 
   updateAsync: function(data, element, config, queryResponse, details, done) {
-    // Get the selected start date field from the user input (assuming it's a Looker parameter)
-    const selectedStartDateField = LookerCharts.Utils.textForCell(details.data[0][config._time]);
+    // Get the date dimension and count measure names from config
+    const dateDimension = config.dimensions[0]; // Assuming only one dimension is selected
+    const countMeasure = config.measures[0];     // Assuming only one measure is selected
 
-    // Get the count field name from the queryResponse
-    const countField = queryResponse.fields.measure_like[0].name; // Replace [0] with the appropriate index if needed
+    // Calculate the percentage change for each date
+    const percentageChanges = [];
+    for (const row of data) {
+      const currentDate = row[dateDimension].value;
+      const currentCount = row[countMeasure].value;
 
-    // Filter the data to include only dates equal to or greater than the selected start date field
-    const filteredData = data.filter(item => new Date(item[selectedStartDateField]) >= new Date(selectedStartDate));
+      // Find the count for yesterday (assuming your dates are sorted)
+      const previousIndex = data.findIndex(item => item[dateDimension].value === currentDate) - 1;
+      const previousCount = previousIndex >= 0 ? data[previousIndex][countMeasure].value : 0;
 
-    // Sort the filtered data by date in ascending order
-    filteredData.sort((a, b) => new Date(a[selectedStartDateField]) - new Date(b[selectedStartDateField]));
+      // Calculate the percentage change
+      const percentageChange = ((currentCount - previousCount) / previousCount) * 100;
 
-    // Calculate the count change for each date
-    const countChanges = [];
-    for (let i = 1; i < filteredData.length; i++) {
-      const currentDate = new Date(filteredData[i][selectedStartDateField]);
-      const previousDate = new Date(filteredData[i - 1][selectedStartDateField]);
-      const countChange = filteredData[i][config.countField] - filteredData[i - 1][config.countField];
-
-      // Format the date and count change
-      const formattedDate = currentDate.toDateString();
-      const formattedChange = countChange >= 0 ? `+${countChange}` : countChange.toString();
-
-      countChanges.push(`${formattedDate}: ${formattedChange}`);
+      // Display the percentage change for each date
+      percentageChanges.push(`${currentDate}: ${percentageChange.toFixed(2)}%`);
     }
 
-    // Display the count change values in the container
-    this.container.textContent = countChanges.join('\n');
+    // Display the percentage change values in the container
+    this.container.textContent = percentageChanges.join('\n');
 
     // Signal the completion of rendering
     done();
