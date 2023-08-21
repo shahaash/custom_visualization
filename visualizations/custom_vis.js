@@ -54,10 +54,13 @@ looker.plugins.visualizations.add({
         </div>
       `;
 
+      // Display the text line below the count value
+      this.textContainer.textContent = "Today vs Yesterday";
+
       // Prepare data for the difference chart
       const dates = ['2023-08-01', '2023-08-02', '2023-08-03', '2023-08-04']; // Example dates
       const values = [100, 120, 90, 110]; // Example values
-      
+
       // Calculate the difference between today and previous day values
       const valueDifferences = [];
       for (let i = 1; i < values.length; i++) {
@@ -101,9 +104,6 @@ looker.plugins.visualizations.add({
           }
         }
       });
-
-      // Display the text line below the count value
-      this.textContainer.textContent = "Today vs Yesterday";
 
       // Signal the completion of rendering
       done();
