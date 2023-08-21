@@ -46988,6 +46988,11 @@ view: events__security_result {
     group_label: "About Resource"
     group_item_label: "Name"
   }
+  dimension: about__resource__name__grouped {
+    type: string
+    sql: CASE WHEN ${about__resource__name} IN ("Amazon.com LLC", "Google LLC", "Instagram, LLC", "LinkedIn Corporation", "Meta Platforms, Inc.", "Microsoft Corporation", "Netflix, Inc.", "Paypal Pte. Ltd.", "Spotify Limited", "Twitter, Inc.") THEN ${about__resource__name} ELSE 'Other' END ;;
+    label: "Companies"
+  }
   dimension: about__resource__parent {
     type: string
     sql: ${TABLE}.about.resource.parent ;;
