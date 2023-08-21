@@ -40,6 +40,22 @@ view: events {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.hour_time_bucket ;;
   }
+  dimension_group: event_timestamp {
+    label: "_time"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      hour,
+      minute,
+      year
+    ]
+    datatype: epoch
+    sql: ${TABLE}.metadata.event_timestamp.seconds ;;
+  }
   dimension: intermediary {
     hidden: yes
     sql: ${TABLE}.intermediary ;;
