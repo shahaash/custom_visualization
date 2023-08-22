@@ -32224,6 +32224,13 @@ view: events__about {
     group_label: "Location Region Coordinates"
     group_item_label: "Longitude"
   }
+  dimension: location__region_coordinates__location {
+    type: location
+    sql_latitude: ${location__region_coordinates__latitude} ;;
+    sql_longitude: ${location__region_coordinates__longitude} ;;
+    group_label: "Location Region Coordinates"
+    group_item_label: "Location Loc"
+  }
   dimension: location__region_latitude {
     type: number
     sql: ${TABLE}.location.region_latitude ;;
@@ -45468,13 +45475,6 @@ view: events__security_result {
     sql: ${TABLE}.about.location.region_coordinates.longitude ;;
     group_label: "About Location Region Coordinates"
     group_item_label: "Longitude"
-  }
-  dimension: about__location__region_coordinates__location {
-    type: location
-    sql_latitude: ${about__location__region_coordinates__latitude} ;;
-    sql_longitude: ${about__location__region_coordinates__longitude} ;;
-    group_label: "About Location Region Coordinates"
-    group_item_label: "Location Loc"
   }
   dimension: about__location__region_latitude {
     type: number
