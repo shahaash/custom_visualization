@@ -71401,11 +71401,11 @@ view: events__extensions__vulns__vulnerabilities {
     group_label: "About Location Region Coordinates"
     group_item_label: "Longitude"
   }
-  dimension: about__location__region_coordinates__loc {
+  dimension: about__location__region_coordinate__location {
     type: location
-    sql_latitude: ${TABLE}.about.location.region_coordinates.latitude ;;
-    sql_longitude: ${TABLE}.about.location.region_coordinates.longitude ;;
-    group_label: "About Location Region Coordinates Loc"
+    sql_latitude: ${about__location__region_coordinates__latitude} ;;
+    sql_longitude: ${about__location__region_coordinates__longitude} ;;
+    group_label: "About Location Region Coordinates"
     group_item_label: "Location Loc"
   }
   dimension: about__location__region_latitude {
