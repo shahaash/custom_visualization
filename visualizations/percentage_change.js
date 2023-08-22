@@ -1,4 +1,4 @@
-looker.plugins.visualizations.add({
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js" integrity="sha512-3PRVLmoBYuBDbCEojg5qdmd9UhkPiyoczSFYjnLhFb2KAFsWWEMlAPt0olX1Nv7zGhDfhGEVkXsu51a55nlYmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>ations.add({
   create: function(element, config) {
     // Create a new DOM element to hold the sparkline chart
     var sparklineContainer = $('<div class="sparkline-chart"></div>');
@@ -6,7 +6,7 @@ looker.plugins.visualizations.add({
 
     // Include Sparkline.js from a CDN (replace with the actual CDN URL)
     var sparklineJsScript = document.createElement('script');
-    sparklineJsScript.src = 'URL_TO_SPARKLINE_JS_CDN'; // Replace with the actual CDN URL
+    sparklineJsScript.src = '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js" integrity="sha512-3PRVLmoBYuBDbCEojg5qdmd9UhkPiyoczSFYjnLhFb2KAFsWWEMlAPt0olX1Nv7zGhDfhGEVkXsu51a55nlYmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>'; // Replace with the actual CDN URL
     document.head.appendChild(sparklineJsScript);
 
     // Return the container element
