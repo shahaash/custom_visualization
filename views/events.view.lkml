@@ -45469,6 +45469,13 @@ view: events__security_result {
     group_label: "About Location Region Coordinates"
     group_item_label: "Longitude"
   }
+  dimension: about__location__region_coordinates__location {
+    type: location
+    sql_latitude: ${about__location__region_coordinates__latitude} ;;
+    sql_longitude: ${about__location__region_coordinates__longitude} ;;
+    group_label: "About Location Region Coordinates"
+    group_item_label: "Location Loc"
+  }
   dimension: about__location__region_latitude {
     type: number
     sql: ${TABLE}.about.location.region_latitude ;;
@@ -71400,13 +71407,6 @@ view: events__extensions__vulns__vulnerabilities {
     sql: ${TABLE}.about.location.region_coordinates.longitude ;;
     group_label: "About Location Region Coordinates"
     group_item_label: "Longitude"
-  }
-  dimension: about__location__region_coordinates__location {
-    type: location
-    sql_latitude: ${about__location__region_coordinates__latitude} ;;
-    sql_longitude: ${about__location__region_coordinates__longitude} ;;
-    group_label: "About Location Region Coordinates"
-    group_item_label: "Location Loc"
   }
   dimension: about__location__region_latitude {
     type: number
