@@ -7,19 +7,31 @@ looker.plugins.visualizations.add({
     var button = document.createElement('button');
     button.innerText = 'Click Me';
 
-    // Create a div to display a message
-    var messageDiv = document.createElement('div');
-    messageDiv.style.display = 'none'; // Initially hide it
+    // Create a modal element
+    var modal = document.createElement('div');
+    modal.classList.add('modal', 'fade');
+    modal.tabIndex = -1;
+    modal.setAttribute('role', 'dialog');
+    modal.innerHTML = `
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <p>Button Clicked!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    `;
 
-    // Add a click event listener
+    // Add a click event listener to the button to show the modal
     button.addEventListener('click', function () {
-      // Display the message
-      messageDiv.innerText = 'Button Clicked!';
-      messageDiv.style.display = 'block';
+      $(modal).modal('show');
     });
 
-    // Append the button and message div to the element
+    // Append the button and modal to the element
     element.appendChild(button);
-    element.appendChild(messageDiv);
+    element.appendChild(modal);
   },
 });
