@@ -6,15 +6,20 @@ looker.plugins.visualizations.add({
       // Create a button element
       var button = document.createElement('button');
       button.innerText = 'Click Me';
-  
+
       // Add a click event listener
-      button.addEventListener('click', function () {
+      // button.addEventListener('click', function () {
         // Define the action when the button is clicked
+        // alert('Button Clicked!');
+      // });
+
+      // Define the onclick event handler
+      button.onclick = function () {
+      // Define the action you want to perform when the button is clicked
         alert('Button Clicked!');
-      });
-  
+      };
+
       // Append the button to the element
       element.appendChild(button);
     },
 });
-  
