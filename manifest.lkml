@@ -8,3 +8,8 @@ visualization: {
   label: "percentage_change"
   file: "visualizations/percentage_change.js"
 }
+visualization: {
+  id: "google"
+  label: "google"
+  file: "visualizations/google.js"
+}
