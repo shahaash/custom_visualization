@@ -26,7 +26,7 @@ looker.plugins.visualizations.add({
 
     updateAsync: function(data, element, config, queryResponse, details, done) {
       // Calculate the count value from the data
-      // const count = data.length;
+      const count = data.length;
 
       let list=[]
       let list1=[]
@@ -43,12 +43,12 @@ looker.plugins.visualizations.add({
       // console.log("list1:",list1)
 
       // Calculate the percentage value based on the available count
-      // const estimatedTotalItems = 100;
-      // const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
-      // const previousPercentage = 75;
+      const estimatedTotalItems = 100;
+      const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
+      const previousPercentage = 75;
 
-      // const percentageChange = percentage - previousPercentage;
-      // const arrowIcon = percentageChange > 0 ? '➚' : '➘';
+      const percentageChange = percentage - previousPercentage;
+      const arrowIcon = percentageChange > 0 ? '➚' : '➘';
 
       // Display the count and percentage value in the container
       this.container.innerHTML = `
