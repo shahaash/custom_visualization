@@ -1,25 +1,25 @@
 looker.plugins.visualizations.add({
-    id: 'custom-button',
-    label: 'Custom Button',
-    options: {},
-    create: function (element, config) {
-      // Create a button element
-      var button = document.createElement('button');
-      button.innerText = 'Click Me';
+  id: 'custom-button',
+  label: 'Custom Button',
+  options: {},
+  create: function (element, config) {
+    // Create a button element
+    var button = document.createElement('button');
+    button.innerText = 'Click Me';
 
-      // Add a click event listener
-      // button.addEventListener('click', function () {
-        // Define the action when the button is clicked
-        // alert('Button Clicked!');
-      // });
+    // Create a div to display a message
+    var messageDiv = document.createElement('div');
+    messageDiv.style.display = 'none'; // Initially hide it
 
-      // Define the onclick event handler
-      button.onclick = function () {
-      // Define the action you want to perform when the button is clicked
-        alert('Button Clicked!');
-      };
+    // Add a click event listener
+    button.addEventListener('click', function () {
+      // Display the message
+      messageDiv.innerText = 'Button Clicked!';
+      messageDiv.style.display = 'block';
+    });
 
-      // Append the button to the element
-      element.appendChild(button);
-    },
+    // Append the button and message div to the element
+    element.appendChild(button);
+    element.appendChild(messageDiv);
+  },
 });
