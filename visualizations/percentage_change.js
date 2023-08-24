@@ -1,37 +1,38 @@
-looker.plugins.visualizations.add({
-    create: function (element, config) {
-        var chart = document.createElement('table');
-        chart.id = 'custom-table-chart';
-        element.appendChild(chart);
-        var style = document.createElement('style');
-        style.innerHTML = `table, th, td {
-          border: 1px solid black;
-          border-collapse: collapse;
+updateAsync: function(data, element, config, queryResponse, details, done) {
+    // Assuming your data is sorted by date in descending order
+    data.sort(function(a, b) {
+        return new Date(b[queryResponse.fields.dimensions[0].name]) - new Date(a[queryResponse.fields.dimensions[0].name]);
+    });
 
-        }`
-        element.appendChild(style);
-    },
-    updateAsync: function (data, element, config, queryResponse, details, doneRendering) {
-        var chart = element.querySelector('#custom-table-chart');
-        chart.innerHTML = '';
-        var headerRow = document.createElement('tr');
-        for (var i of queryResponse.fields.dimensions) {
-            var th = document.createElement('th');
-            th.textContent = i.name;
-            headerRow.appendChild(th);
-        }
-        chart.appendChild(headerRow);
-        // Create table rows
-        data.forEach(function (row) {
-            var rows = document.createElement('tr');
-            Object.keys(row).forEach(function (key) {
-                var td = document.createElement('td');
-                td.textContent = row[key].value;
-                rows.appendChild(td);
+    // Initialize variables to store previous date and percentage change data
+    let prevDate = null;
+    let percentageChanges = [];
+    let prevCount = null; // Initialize prevCount
+
+    // Iterate through the data
+    data.forEach(function(row) {
+        const currentDate = new Date(row[queryResponse.fields.dimensions[0].name]);
+        const count = parseFloat(row[queryResponse.fields.measures[0].name]);
+
+        if (prevDate) {
+            // Calculate percentage change (current - previous) / previous * 100
+            const percentageChange = ((count - prevCount) / prevCount) * 100;
+            percentageChanges.push({
+                date: currentDate,
+                percentageChange: percentageChange
             });
-            chart.appendChild(rows);
-        });
-        element.appendChild(chart);
-        doneRendering()
-    }
-});
+        }
+
+        // Update previous date and count for the next iteration
+        prevDate = currentDate;
+        prevCount = count; // Update prevCount with the current count
+    });
+
+    // Now 'percentageChanges' contains an array of objects with date and percentage change
+    console.log("Percentage Changes:", percentageChanges);
+
+    // Continue with rendering or further processing as needed
+
+    // Call done to signal rendering completion
+    done();
+}

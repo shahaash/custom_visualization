@@ -7,13 +7,19 @@ looker.plugins.visualizations.add({
     var button = document.createElement('button');
     button.innerText = 'Click Me';
 
+    // Create a div to display a message
+    var messageDiv = document.createElement('div');
+    messageDiv.style.display = 'none'; // Initially hide it
+
     // Add a click event listener
     button.addEventListener('click', function () {
-      // Display a window alert when the button is clicked
-      window.alert('Button Clicked!');
+      // Display the message
+      messageDiv.innerText = 'Button Clicked!';
+      messageDiv.style.display = 'block';
     });
 
-    // Append the button to the element
+    // Append the button and message div to the element
     element.appendChild(button);
+    element.appendChild(messageDiv);
   },
 });
