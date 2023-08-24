@@ -1,25 +1,43 @@
 looker.plugins.visualizations.add({
-  id: 'custom-button',
-  label: 'Custom Button',
-  options: {},
-  create: function (element, config) {
-    // Create a button element
-    var button = document.createElement('button');
-    button.innerText = 'Click Me';
+    id: 'custom_button_popup',
+    label: 'Custom Button with Pop-up',
+    options: {
+      message: {
+        type: 'string',
+        label: 'Popup Message',
+        default: 'Hello, World!'
+      }
+    },
+    // This function is called when the visualization is first loaded
+    create: function(element, config) {
+      // Create and style a button element
+      const button = document.createElement('button');
+      button.innerHTML = 'Click Me';
+      button.className = 'custom-button';
+      element.appendChild(button);
 
-    // Create a div to display a message
-    var messageDiv = document.createElement('div');
-    messageDiv.style.display = 'none'; // Initially hide it
+      // Add a click event listener to the button
+      button.addEventListener('click', () => {
+        // Show a pop-up dialog when the button is clicked
+        const popup = document.createElement('div');
+        popup.className = 'popup';
+        popup.innerHTML = config.message;
+        element.appendChild(popup);
 
-    // Add a click event listener
-    button.addEventListener('click', function () {
-      // Display the message
-      messageDiv.innerText = 'Button Clicked!';
-      messageDiv.style.display = 'block';
-    });
+        // Close the pop-up when clicked anywhere outside the pop-up
+        document.addEventListener('click', closePopup);
+      });
 
-    // Append the button and message div to the element
-    element.appendChild(button);
-    element.appendChild(messageDiv);
-  },
-});
+      // Function to close the pop-up
+      function closePopup(event) {
+        if (!popup.contains(event.target) && popup !== event.target) {
+          element.removeChild(popup);
+          document.removeEventListener('click', closePopup);
+        }
+      }
+    },
+    // This function is called when the options change
+    update: function(data, element, config, queryResponse) {
+      // Nothing to update in this example
+    }
+  });
