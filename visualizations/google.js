@@ -25,16 +25,16 @@ looker.plugins.visualizations.add({
         element.appendChild(popup);
 
         // Close the pop-up when clicked anywhere outside the pop-up
-        document.addEventListener('click', closePopup);
+        //document.addEventListener('click', closePopup);
       });
 
       // Function to close the pop-up
-      function closePopup(event) {
-        if (!popup.contains(event.target) && popup !== event.target) {
-          element.removeChild(popup);
-          document.removeEventListener('click', closePopup);
-        }
-      }
+      //function closePopup(event) {
+        //if (!popup.contains(event.target) && popup !== event.target) {
+          //element.removeChild(popup);
+          //document.removeEventListener('click', closePopup);
+        //}
+      //}
     },
     // This function is called when the options change
     update: function(data, element, config, queryResponse) {
