@@ -14,7 +14,7 @@ looker.plugins.visualizations.add({
     // Add a click event listener
     button.addEventListener('click', function () {
       // Display the message
-      messageDiv.innerText = 'Button Clicked!';
+      window.alert('Button Clicked!');
       messageDiv.style.display = 'block';
     });
 
