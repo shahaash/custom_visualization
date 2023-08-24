@@ -42,49 +42,13 @@ looker.plugins.visualizations.add({
       // console.log("list:",list)
       // console.log("list1:",list1)
 
-      data.sort(function(a, b) {
-        return new Date(b[queryResponse.fields.dimensions[0].name]) - new Date(a[queryResponse.fields.dimensions[0].name]);
-      });
-
-      // Initialize variables to store previous date and percentage change data
-      let prevDate = null;
-      let percentageChanges = [];
-      let prevCount = null; // Initialize prevCount
-
-      // Iterate through the data
-      data.forEach(function(row) {
-          const currentDate = new Date(row[queryResponse.fields.dimensions[0].name]);
-          const count = parseFloat(row[queryResponse.fields.measures[0].name]);
-
-          if (prevDate) {
-              // Calculate percentage change (current - previous) / previous * 100
-              const percentageChange = ((count - prevCount) / prevCount) * 100;
-              percentageChanges.push({
-                  date: currentDate,
-                  percentageChange: percentageChange
-              });
-          }
-
-          // Update previous date and count for the next iteration
-          prevDate = currentDate;
-          prevCount = count; // Update prevCount with the current count
-      });
-
-
       // Calculate the percentage value based on the available count
-      // const estimatedTotalItems = 100;
-      // const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
-      // const previousPercentage = 75;
+      const estimatedTotalItems = 100;
+      const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
+      const previousPercentage = 75;
 
-      // Now 'percentageChanges' contains an array of objects with date and percentage change
-      console.log("Percentage Changes:");
-      percentageChanges.forEach(function(change) {
-        console.log("Date: " + change.date);
-        console.log("Percentage Change: " + change.percentageChange + "%");
-      });
-
-      // const percentageChange = percentage - previousPercentage;
-      const arrowIcon = percentageChanges > 0 ? '➚' : '➘';
+      const percentageChange = percentage - previousPercentage;
+      const arrowIcon = percentageChange > 0 ? '➚' : '➘';
 
       // Display the count and percentage value in the container
       this.container.innerHTML = `
@@ -92,7 +56,7 @@ looker.plugins.visualizations.add({
           <div style="font-size: 60px;">${list1[1]}</div>
           <div style="display: flex; flex-direction: column; align-items: flex-start;">
             <div style="font-size: 30px;">${arrowIcon}</div>
-            <div style="font-size: 20px; text-align: right;">${percentageChanges[0]}%</div>
+            <div style="font-size: 20px; text-align: right;">${percentage}%</div>
           </div>
         </div>
       `;
