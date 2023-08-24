@@ -85,7 +85,7 @@ looker.plugins.visualizations.add({
           <div style="font-size: 60px;">${list1[1]}</div>
           <div style="display: flex; flex-direction: column; align-items: flex-start;">
             <div style="font-size: 30px;">${arrowIcon}</div>
-            <div style="font-size: 20px; text-align: right;">${percentageChanges}%</div>
+            <div style="font-size: 20px; text-align: right;">${percentageChanges[0]}%</div>
           </div>
         </div>
       `;
