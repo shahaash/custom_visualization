@@ -17,6 +17,13 @@ looker.plugins.visualizations.add({
         var closeButton = document.createElement('button');
         closeButton.textContent = 'Close';
 
+        // Create a message element
+        var message = document.createElement('p');
+        message.textContent = 'This is a custom popup message.';
+
+        // Append the message to the popup content
+        popupContent.appendChild(message);
+
         // Append the close button to the popup content
         popupContent.appendChild(closeButton);
 
