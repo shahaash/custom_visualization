@@ -76,6 +76,13 @@ looker.plugins.visualizations.add({
       // const percentage = ((count / estimatedTotalItems) * 100).toFixed(2);
       // const previousPercentage = 75;
 
+      // Now 'percentageChanges' contains an array of objects with date and percentage change
+      console.log("Percentage Changes:");
+      percentageChanges.forEach(function(change) {
+        console.log("Date: " + change.date);
+        console.log("Percentage Change: " + change.percentageChange + "%");
+      });
+
       // const percentageChange = percentage - previousPercentage;
       const arrowIcon = percentageChanges > 0 ? '➚' : '➘';
 
