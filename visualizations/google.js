@@ -9,17 +9,25 @@ looker.plugins.visualizations.add({
         var searchButton = document.createElement('button');
         searchButton.textContent = 'Search';
 
+        // Create a div to display the search query
+        var queryDisplay = document.createElement('div');
+        queryDisplay.className = 'query-display';
+
         // Append the input field and button to the element
         element.appendChild(searchInput);
         element.appendChild(searchButton);
+        element.appendChild(queryDisplay);
 
         // Attach an event listener to the search button
         searchButton.addEventListener('click', function() {
             // Get the search query from the input field
             var query = searchInput.value;
 
+            // Display the search query
+            queryDisplay.textContent = 'Hello' + query;
+
             // Send a search query to Looker (use Looker JavaScript SDK)
-            sendSearchQuery(query);
+            // sendSearchQuery(query);
         });
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
@@ -30,14 +38,3 @@ looker.plugins.visualizations.add({
         done();
     }
 });
-
-function sendSearchQuery(query) {
-    // Use the Looker JavaScript SDK to send a search query to Looker
-    looker.api.request('GET', '/path/to/looker/search', { query: query })
-        .then(function(response) {
-            // Handle the response from Looker and update your visualization
-        })
-        .catch(function(error) {
-            console.error('Error sending search query:', error);
-        });
-}
