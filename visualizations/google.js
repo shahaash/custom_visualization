@@ -24,7 +24,7 @@ looker.plugins.visualizations.add({
             var query = searchInput.value;
 
             // Send a search query to Looker (use Looker JavaScript SDK)
-            sendSearchQuery(query, searchResults);
+            sendSearchQuery(query);
         });
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
