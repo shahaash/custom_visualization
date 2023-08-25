@@ -1,5 +1,13 @@
 looker.plugins.visualizations.add({
     create: function(element, config) {
+        // Initialize the Looker SDK
+        looker.init({
+            base_url: 'YOUR_LOOKER_API_URL',
+            headers: {
+                'Authorization': 'Bearer YOUR_API_TOKEN'
+            }
+        });
+
         // Create a search input field
         var searchInput = document.createElement('input');
         searchInput.type = 'text';
@@ -24,7 +32,7 @@ looker.plugins.visualizations.add({
             var query = searchInput.value;
 
             // Send a search query to Looker (use Looker JavaScript SDK)
-            sendSearchQuery(query);
+            sendSearchQuery(query, searchResults);
         });
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
@@ -36,33 +44,16 @@ looker.plugins.visualizations.add({
     }
 });
 
-function sendSearchQuery(query) {
+function sendSearchQuery(query, resultsElement) {
+    console.log('Sending search query:', query); // Debugging
     // Use the Looker JavaScript SDK to send a search query to Looker
     looker.api.request('GET', 'https://cde5a32e-377f-44e9-8a1f-a5d05f8e96ee.looker.app', { query: query })
         .then(function(response) {
+            console.log('Received response:', response); // Debugging
             // Handle the response from Looker and update your visualization
             displaySearchResults(response, resultsElement);
         })
         .catch(function(error) {
             console.error('Error sending search query:', error);
         });
-}
-
-function displaySearchResults(results, resultsElement) {
-    // Assuming results is an array of data, you can format and display it in the resultsElement
-    // For simplicity, this example assumes results is an array of strings.
-
-    resultsElement.innerHTML = ''; // Clear previous results
-
-    if (results && results.length > 0) {
-        var ul = document.createElement('ul');
-        results.forEach(function(result) {
-            var li = document.createElement('li');
-            li.textContent = result;
-            ul.appendChild(li);
-        });
-        resultsElement.appendChild(ul);
-    } else {
-        resultsElement.textContent = 'No results found.';
-    }
 }
