@@ -36,10 +36,12 @@ looker.plugins.visualizations.add({
     }
 });
 
-function sendSearchQuery(query) {
+function sendSearchQuery(query, resultsElement) {
+    console.log('Sending search query:', query); // Debugging
     // Use the Looker JavaScript SDK to send a search query to Looker
     looker.api.request('GET', 'https://cde5a32e-377f-44e9-8a1f-a5d05f8e96ee.looker.app', { query: query })
         .then(function(response) {
+            console.log('Received response:', response); // Debugging
             // Handle the response from Looker and update your visualization
             displaySearchResults(response, resultsElement);
         })
