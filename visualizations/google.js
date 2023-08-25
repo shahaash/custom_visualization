@@ -1,41 +1,45 @@
 looker.plugins.visualizations.add({
-  id: 'custom_search',
+  id: 'my_custom_search_viz',
   label: 'Custom Search',
   options: {
-    searchField: {
+    apiEndpoint: {
       type: 'string',
-      label: 'Search Field'
-    }
+      label: 'API Endpoint',
+    },
   },
   create: function (element, config) {
-    // Create search input and button elements
-    this.searchInput = element.appendChild(document.createElement('input'));
-    this.searchInput.setAttribute('type', 'text');
-    this.searchInput.setAttribute('placeholder', 'Enter Search Query');
+    // Create the search bar
+    this.searchBar = element.appendChild(document.createElement('input'));
+    this.searchBar.setAttribute('type', 'text');
+    this.searchBar.setAttribute('placeholder', 'Enter search term');
 
+    // Create the search button
     this.searchButton = element.appendChild(document.createElement('button'));
     this.searchButton.textContent = 'Search';
-
-    // Create a container for displaying search results
-    this.resultsContainer = element.appendChild(document.createElement('div'));
-  },
-  updateAsync: function (data, element, config, queryResponse, details, done) {
-    // Attach an event listener to the search button
     this.searchButton.addEventListener('click', () => {
-      const searchQuery = this.searchInput.value;
+      // Get the search term from the input field
+      const searchTerm = this.searchBar.value;
 
-      // Communicate with Looker's data API to fetch filtered data based on searchQuery
-      LookerSDK.ok(
-        LookerSDK.createRequest(`/queries/${queryResponse.id}/run/json?apply_filter=${config.searchField}:${searchQuery}`)
-      ).then((response) => {
-        const filteredData = response;
+      // Get the API endpoint from the configuration
+      const apiEndpoint = 'https://cde5a32e-377f-44e9-8a1f-a5d05f8e96ee.looker.app';
 
-        // Display filtered data in the results container
-        this.resultsContainer.textContent = JSON.stringify(filteredData, null, 2);
-      });
+      // Perform the API call
+      fetch(`${apiEndpoint}?q=${searchTerm}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Display the API response in the same tile
+          this.searchBar.style.display = 'none';
+          this.searchButton.style.display = 'none';
+          this.displayContent(data);
+        })
+        .catch((error) => console.error(error));
     });
+  },
+  displayContent: function (data) {
+    // Create a container for displaying the API response
+    this.container = this.element.appendChild(document.createElement('div'));
 
-    // Signal the completion of rendering
-    done();
-  }
+    // Display the API response content
+    this.container.textContent = JSON.stringify(data, null, 2);
+  },
 });
