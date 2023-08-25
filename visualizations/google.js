@@ -1,59 +1,41 @@
 looker.plugins.visualizations.add({
-    create: function(element, config) {
-        // Initialize the Looker SDK
-        // looker.init({
-            // base_url: 'https://cde5a32e-377f-44e9-8a1f-a5d05f8e96ee.looker.app',
-            // headers: {
-                // 'Authorization': 'Bearer YOUR_API_TOKEN'
-            // }
-        //});
-
-        // Create a search input field
-        var searchInput = document.createElement('input');
-        searchInput.type = 'text';
-        searchInput.placeholder = 'Search...';
-
-        // Create a search button
-        var searchButton = document.createElement('button');
-        searchButton.textContent = 'Search';
-
-        // Create a div to display the search results
-        var searchResults = document.createElement('div');
-        searchResults.className = 'search-results';
-
-        // Append the input field and button to the element
-        element.appendChild(searchInput);
-        element.appendChild(searchButton);
-        element.appendChild(searchResults);
-
-        // Attach an event listener to the search button
-        searchButton.addEventListener('click', function() {
-            // Get the search query from the input field
-            var query = searchInput.value;
-
-            // Send a search query to Looker (use Looker JavaScript SDK)
-            sendSearchQuery(query, searchResults);
-        });
-    },
-    updateAsync: function(data, element, config, queryResponse, details, done) {
-        // This is where you'd handle the response from Looker and update your visualization
-        // based on the search results.
-
-        // Call done to signal rendering completion
-        done();
+  id: 'custom_search',
+  label: 'Custom Search',
+  options: {
+    searchField: {
+      type: 'string',
+      label: 'Search Field'
     }
-});
+  },
+  create: function (element, config) {
+    // Create search input and button elements
+    this.searchInput = element.appendChild(document.createElement('input'));
+    this.searchInput.setAttribute('type', 'text');
+    this.searchInput.setAttribute('placeholder', 'Enter Search Query');
 
-function sendSearchQuery(query, resultsElement) {
-    console.log('Sending search query:', query); // Debugging
-    // Use the Looker JavaScript SDK to send a search query to Looker
-    looker.api.request('GET', 'https://cde5a32e-377f-44e9-8a1f-a5d05f8e96ee.looker.app', { query: query })
-        .then(function(response) {
-            console.log('Received response:', response); // Debugging
-            // Handle the response from Looker and update your visualization
-            displaySearchResults(response, resultsElement);
-        })
-        .catch(function(error) {
-            console.error('Error sending search query:', error);
-        });
-}
+    this.searchButton = element.appendChild(document.createElement('button'));
+    this.searchButton.textContent = 'Search';
+
+    // Create a container for displaying search results
+    this.resultsContainer = element.appendChild(document.createElement('div'));
+  },
+  updateAsync: function (data, element, config, queryResponse, details, done) {
+    // Attach an event listener to the search button
+    this.searchButton.addEventListener('click', () => {
+      const searchQuery = this.searchInput.value;
+
+      // Communicate with Looker's data API to fetch filtered data based on searchQuery
+      LookerSDK.ok(
+        LookerSDK.createRequest(`/queries/${queryResponse.id}/run/json?apply_filter=${config.searchField}:${searchQuery}`)
+      ).then((response) => {
+        const filteredData = response;
+
+        // Display filtered data in the results container
+        this.resultsContainer.textContent = JSON.stringify(filteredData, null, 2);
+      });
+    });
+
+    // Signal the completion of rendering
+    done();
+  }
+});
