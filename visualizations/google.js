@@ -1,45 +1,37 @@
 looker.plugins.visualizations.add({
-  id: 'my_custom_search_viz',
-  label: 'Custom Search',
-  options: {
-    apiEndpoint: {
-      type: 'string',
-      label: 'API Endpoint',
+    create: function(element, config) {
+        // Create a search input field
+        var searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.placeholder = 'Search...';
+
+        // Create a search button
+        var searchButton = document.createElement('button');
+        searchButton.textContent = 'Search';
+
+        // Create a div to display the search query
+        var queryDisplay = document.createElement('div');
+        queryDisplay.className = 'query-display';
+
+        // Append the input field, button, and query display div to the element
+        element.appendChild(searchInput);
+        element.appendChild(searchButton);
+        element.appendChild(queryDisplay);
+
+        // Attach an event listener to the search button
+        searchButton.addEventListener('click', function() {
+            // Get the search query from the input field
+            var query = searchInput.value;
+
+            // Display the search query
+            queryDisplay.textContent = 'Search Query: ' + query;
+        });
     },
-  },
-  create: function (element, config) {
-    // Create the search bar
-    this.searchBar = element.appendChild(document.createElement('input'));
-    this.searchBar.setAttribute('type', 'text');
-    this.searchBar.setAttribute('placeholder', 'Enter search term');
+    updateAsync: function(data, element, config, queryResponse, details, done) {
+        // This is where you'd handle the response from Looker and update your visualization
+        // based on the search results.
 
-    // Create the search button
-    this.searchButton = element.appendChild(document.createElement('button'));
-    this.searchButton.textContent = 'Search';
-    this.searchButton.addEventListener('click', () => {
-      // Get the search term from the input field
-      const searchTerm = this.searchBar.value;
-
-      // Get the API endpoint from the configuration
-      const apiEndpoint = 'https://cde5a32e-377f-44e9-8a1f-a5d05f8e96ee.looker.app';
-
-      // Perform the API call
-      fetch(`${apiEndpoint}?q=${searchTerm}`)
-        .then((response) => response.json())
-        .then((data) => {
-          // Display the API response in the same tile
-          this.searchBar.style.display = 'none';
-          this.searchButton.style.display = 'none';
-          this.displayContent(data);
-        })
-        .catch((error) => console.error(error));
-    });
-  },
-  displayContent: function (data) {
-    // Create a container for displaying the API response
-    this.container = this.element.appendChild(document.createElement('div'));
-
-    // Display the API response content
-    this.container.textContent = JSON.stringify(data, null, 2);
-  },
+        // Call done to signal rendering completion
+        done();
+    }
 });
