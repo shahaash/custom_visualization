@@ -1,56 +1,43 @@
 looker.plugins.visualizations.add({
     create: function(element, config) {
-        // Create a button element
-        var button = document.createElement('button');
-        button.textContent = 'Click me';
+        // Create a search input field
+        var searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.placeholder = 'Search...';
 
-        // Create a popup container element
-        var popupContainer = document.createElement('div');
-        popupContainer.className = 'popup-container';
+        // Create a search button
+        var searchButton = document.createElement('button');
+        searchButton.textContent = 'Search';
 
-        // Create a popup content element
-        var popupContent = document.createElement('div');
-        popupContent.className = 'popup-content';
-        popupContent.style.display = 'none'; // Hide initially
+        // Append the input field and button to the element
+        element.appendChild(searchInput);
+        element.appendChild(searchButton);
 
-        // Create a close button for the popup
-        var closeButton = document.createElement('button');
-        closeButton.textContent = 'Close';
+        // Attach an event listener to the search button
+        searchButton.addEventListener('click', function() {
+            // Get the search query from the input field
+            var query = searchInput.value;
 
-        // Create a message element
-        var message = document.createElement('p');
-        message.textContent = 'This is a custom popup message.';
-
-        // Append the message to the popup content
-        popupContent.appendChild(message);
-
-        // Append the close button to the popup content
-        popupContent.appendChild(closeButton);
-
-        // Append the button to the element
-        element.appendChild(button);
-
-        // Append the popup content to the popup container
-        popupContainer.appendChild(popupContent);
-
-        // Append the popup container to the element
-        element.appendChild(popupContainer);
-
-        // Attach a click event handler to show the popup when the button is clicked
-        button.addEventListener('click', function() {
-            popupContent.style.display = 'block'; // Show the popup
-        });
-
-        // Attach a click event handler to close the popup when the close button is clicked
-        closeButton.addEventListener('click', function() {
-            popupContent.style.display = 'none'; // Hide the popup
+            // Send a search query to Looker (use Looker JavaScript SDK)
+            sendSearchQuery(query);
         });
     },
     updateAsync: function(data, element, config, queryResponse, details, done) {
-        // This is where you'd potentially update the button or popup based on data
-        // Since you don't need data, this might be empty or contain some static behavior
+        // This is where you'd handle the response from Looker and update your visualization
+        // based on the search results.
 
         // Call done to signal rendering completion
         done();
     }
 });
+
+function sendSearchQuery(query) {
+    // Use the Looker JavaScript SDK to send a search query to Looker
+    looker.api.request('GET', '/path/to/looker/search', { query: query })
+        .then(function(response) {
+            // Handle the response from Looker and update your visualization
+        })
+        .catch(function(error) {
+            console.error('Error sending search query:', error);
+        });
+}
