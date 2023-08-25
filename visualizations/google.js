@@ -1,12 +1,12 @@
 looker.plugins.visualizations.add({
     create: function(element, config) {
         // Initialize the Looker SDK
-        looker.init({
-            base_url: 'YOUR_LOOKER_API_URL',
-            headers: {
-                'Authorization': 'Bearer YOUR_API_TOKEN'
-            }
-        });
+        // looker.init({
+            // base_url: 'https://cde5a32e-377f-44e9-8a1f-a5d05f8e96ee.looker.app',
+            // headers: {
+                // 'Authorization': 'Bearer YOUR_API_TOKEN'
+            // }
+        //});
 
         // Create a search input field
         var searchInput = document.createElement('input');
