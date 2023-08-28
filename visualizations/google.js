@@ -29,7 +29,7 @@ looker.plugins.visualizations.add({
           var query = searchInput.value;
 
           // Display the search query
-          queryDisplay.textContent = 'Search Query: ' + query;
+          queryDisplay.textContent = query;
 
           // Make an API call with the search query
           makeAPICall(query);
