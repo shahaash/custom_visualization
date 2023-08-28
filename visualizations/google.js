@@ -38,7 +38,7 @@ looker.plugins.visualizations.add({
       // Function to make the API call
       function makeAPICall(query) {
         // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint
-        var apiUrl = 'https://crestdatasys.backstory.chronicle.security/rawLogScanResults' + encodeURIComponent(query);
+        var apiUrl = 'https://malachiteingestion-pa.googleapis.com/v1/logtypes?key=' + encodeURIComponent(query);
 
         // Make the API request using fetch or another method
         fetch(apiUrl)
