@@ -47762,8 +47762,8 @@ view: events__about__labels {
     type: string
     sql: ${TABLE}.value ;;
     link: {
-      label: "Contact Warehouse Support"
-      url: "mailto:warehouse@altostrat.com"
+      label: "Redirect to Chronicle"
+      url: "https://crestdatasys.backstory.chronicle.security/"
     }
   }
 }
