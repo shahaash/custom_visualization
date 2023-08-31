@@ -47761,6 +47761,10 @@ view: events__about__labels {
   dimension: value {
     type: string
     sql: ${TABLE}.value ;;
+    link: {
+      label: "Contact Warehouse Support"
+      url: "mailto:warehouse@altostrat.com"
+    }
   }
 }
 
