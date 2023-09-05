@@ -11,6 +11,7 @@ datagroup: sample_viz_default_datagroup {
 persist_with: sample_viz_default_datagroup
 
 explore: entity_graph {
+  sql_always_where: ${metadata__vendor_name} = "DOMAINTOOL" ;;
   join: entity_graph__relations {
     view_label: "Entity Graph: Relations"
     sql: LEFT JOIN UNNEST(${entity_graph.relations}) as entity_graph__relations ;;
