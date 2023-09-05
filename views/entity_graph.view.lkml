@@ -2733,6 +2733,12 @@ view: entity_graph {
     group_label: "Entity Domain Registrant"
     group_item_label: "Company Name"
   }
+  dimension: Domain__Registered__Company {
+    type: string
+    sql: ${TABLE}.entity.domain.registrant.company_name ;;
+    group_label: "Entity Domain Registrant"
+    group_item_label: "Domains Registered Company"
+  }
   dimension: entity__domain__registrant__department {
     hidden: yes
     sql: ${TABLE}.entity.domain.registrant.department ;;
@@ -3057,6 +3063,12 @@ view: entity_graph {
     group_label: "Entity Domain"
     group_item_label: "Registrar"
   }
+  dimension: Domains__Registered__from {
+    type: string
+    sql: ${TABLE}.entity.domain.registrar ;;
+    group_label: "Entity Domain"
+    group_item_label: "Domains Registered from"
+  }
   dimension: entity__domain__registry_data_raw_text {
     type: string
     sql: ${TABLE}.entity.domain.registry_data_raw_text ;;
@@ -3068,6 +3080,12 @@ view: entity_graph {
     sql: ${TABLE}.entity.domain.status ;;
     group_label: "Entity Domain"
     group_item_label: "Status"
+  }
+  dimension: Status__of__Domains {
+    type: string
+    sql: ${TABLE}.entity.domain.status ;;
+    group_label: "Entity Domain"
+    group_item_label: "Status of Domains"
   }
   dimension: entity__domain__tech__account_expiration_time__nanos {
     type: number
