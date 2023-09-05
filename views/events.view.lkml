@@ -47761,10 +47761,6 @@ view: events__about__labels {
   dimension: value {
     type: string
     sql: ${TABLE}.value ;;
-    link: {
-      label: "Redirect to Chronicle"
-      url: "https://crestdatasys.backstory.chronicle.security/"
-    }
   }
 }
 
