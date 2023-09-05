@@ -2253,6 +2253,12 @@ view: entity_graph {
     group_label: "Entity Domain Billing Office Address"
     group_item_label: "Country or Region"
   }
+  dimension: Domain__Billing__Region {
+    type: string
+    sql: ${TABLE}.entity.domain.billing.office_address.country_or_region ;;
+    group_label: "Entity Domain Billing Office Address"
+    group_item_label: "Domain Billing Region"
+  }
   dimension: entity__domain__billing__office_address__desk_name {
     type: string
     sql: ${TABLE}.entity.domain.billing.office_address.desk_name ;;
@@ -2858,6 +2864,12 @@ view: entity_graph {
     sql: ${TABLE}.entity.domain.registrant.office_address.country_or_region ;;
     group_label: "Entity Domain Registrant Office Address"
     group_item_label: "Country or Region"
+  }
+  dimension: Domain__Registrant__Region {
+    type: string
+    sql: ${TABLE}.entity.domain.registrant.office_address.country_or_region ;;
+    group_label: "Entity Domain Registrant Office Address"
+    group_item_label: "Domain Registrant Region"
   }
   dimension: entity__domain__registrant__office_address__desk_name {
     type: string
