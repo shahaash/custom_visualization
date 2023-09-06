@@ -3,6 +3,7 @@ looker.plugins.visualizations.add({
     id: 'display_count',
     label: 'Display Count',
     create: function(element, config) {
+      abcd
       // Create a container for the count value
       this.container = element.appendChild(document.createElement("div"));
       this.container.setAttribute("id", "count-line-container");
